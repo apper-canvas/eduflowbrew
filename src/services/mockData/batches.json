@@ -1,0 +1,70 @@
+[
+  {
+    "Id": 1,
+    "name": "Physics JEE Main",
+    "subject": "Physics",
+    "teacherId": 1,
+    "schedule": {
+      "days": ["Monday", "Wednesday", "Friday"],
+      "time": "10:00-12:00",
+      "timeSlot": "morning"
+    },
+    "room": "Room 101",
+    "capacity": 30,
+    "enrolledCount": 25,
+    "fees": 12000,
+    "startDate": "2024-01-01",
+    "endDate": "2024-06-30"
+  },
+  {
+    "Id": 2,
+    "name": "Mathematics Advanced",
+    "subject": "Mathematics",
+    "teacherId": 2,
+    "schedule": {
+      "days": ["Tuesday", "Thursday", "Saturday"],
+      "time": "14:00-16:00",
+      "timeSlot": "afternoon"
+    },
+    "room": "Room 102",
+    "capacity": 25,
+    "enrolledCount": 20,
+    "fees": 15000,
+    "startDate": "2024-01-01",
+    "endDate": "2024-06-30"
+  },
+  {
+    "Id": 3,
+    "name": "Chemistry NEET",
+    "subject": "Chemistry",
+    "teacherId": 3,
+    "schedule": {
+      "days": ["Monday", "Tuesday", "Friday"],
+      "time": "16:00-18:00",
+      "timeSlot": "evening"
+    },
+    "room": "Room 103",
+    "capacity": 35,
+    "enrolledCount": 30,
+    "fees": 13000,
+    "startDate": "2024-01-15",
+    "endDate": "2024-07-15"
+  },
+  {
+    "Id": 4,
+    "name": "English Literature",
+    "subject": "English",
+    "teacherId": 4,
+    "schedule": {
+      "days": ["Wednesday", "Thursday", "Saturday"],
+      "time": "09:00-11:00",
+      "timeSlot": "morning"
+    },
+    "room": "Room 104",
+    "capacity": 20,
+    "enrolledCount": 15,
+    "fees": 10000,
+    "startDate": "2024-02-01",
+    "endDate": "2024-07-31"
+  }
+]

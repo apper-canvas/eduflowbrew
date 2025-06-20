@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import react-toastify CSS */
+@import 'react-toastify/dist/ReactToastify.css';
+
+/* Ensure scrollbars are visible */
+body {
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Prevent horizontal overflow */
+* {
+  max-width: 100%;
+}
+
+/* Main content areas must allow scroll */
+.main-content {
+  overflow-y: auto;
+  height: 100vh;
+}
+
+@layer utilities {
+  /* Only use scrollbar-hide for specific UI elements, never main content */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Custom toastify styles */
+.Toastify__toast-container {
+  z-index: 9999;
+}
+
+.Toastify__toast--success {
+  background: linear-gradient(135deg, #22C55E, #16A34A);
+}
+
+.Toastify__toast--error {
+  background: linear-gradient(135deg, #EF4444, #DC2626);
+}
+
+.Toastify__toast--warning {
+  background: linear-gradient(135deg, #EAB308, #CA8A04);
+}

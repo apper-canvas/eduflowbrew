@@ -1,0 +1,47 @@
+[
+  {
+    "Id": 1,
+    "studentId": 1,
+    "amount": 15000,
+    "date": "2024-01-15",
+    "mode": "online",
+    "receiptNo": "RCP001",
+    "remarks": "Full fee payment for JEE preparation"
+  },
+  {
+    "Id": 2,
+    "studentId": 2,
+    "amount": 8000,
+    "date": "2024-01-20",
+    "mode": "cash",
+    "receiptNo": "RCP002",
+    "remarks": "Partial payment for Physics batch"
+  },
+  {
+    "Id": 3,
+    "studentId": 3,
+    "amount": 6000,
+    "date": "2024-02-01",
+    "mode": "cheque",
+    "receiptNo": "RCP003",
+    "remarks": "First installment"
+  },
+  {
+    "Id": 4,
+    "studentId": 4,
+    "amount": 10000,
+    "date": "2024-02-10",
+    "mode": "online",
+    "receiptNo": "RCP004",
+    "remarks": "Full fee payment for Chemistry NEET"
+  },
+  {
+    "Id": 5,
+    "studentId": 5,
+    "amount": 12000,
+    "date": "2024-02-15",
+    "mode": "online",
+    "receiptNo": "RCP005",
+    "remarks": "Partial payment for multiple batches"
+  }
+]

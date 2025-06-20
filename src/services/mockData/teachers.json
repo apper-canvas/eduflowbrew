@@ -1,0 +1,38 @@
+[
+  {
+    "Id": 1,
+    "name": "Dr. Rajesh Kumar",
+    "email": "rajesh.kumar@eduflow.com",
+    "phone": "9876543220",
+    "subjects": ["Physics", "Mathematics"],
+    "batchIds": [1],
+    "joinDate": "2023-06-01"
+  },
+  {
+    "Id": 2,
+    "name": "Ms. Kavita Singh",
+    "email": "kavita.singh@eduflow.com",
+    "phone": "9876543221",
+    "subjects": ["Mathematics", "Statistics"],
+    "batchIds": [2],
+    "joinDate": "2023-07-15"
+  },
+  {
+    "Id": 3,
+    "name": "Prof. Suresh Nair",
+    "email": "suresh.nair@eduflow.com",
+    "phone": "9876543222",
+    "subjects": ["Chemistry", "Biology"],
+    "batchIds": [3],
+    "joinDate": "2023-08-01"
+  },
+  {
+    "Id": 4,
+    "name": "Mrs. Anita Joshi",
+    "email": "anita.joshi@eduflow.com",
+    "phone": "9876543223",
+    "subjects": ["English", "Hindi"],
+    "batchIds": [4],
+    "joinDate": "2023-09-10"
+  }
+]
