@@ -1,15 +1,15 @@
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Plus, Search, Mail, Phone, Users, BookOpen } from 'lucide-react';
-import PageHeader from '@/components/organisms/PageHeader';
-import DataTable from '@/components/molecules/DataTable';
-import StatCard from '@/components/molecules/StatCard';
-import SearchBar from '@/components/molecules/SearchBar';
-import Button from '@/components/atoms/Button';
-import Badge from '@/components/atoms/Badge';
-import SkeletonLoader from '@/components/molecules/SkeletonLoader';
-import EmptyState from '@/components/molecules/EmptyState';
-import { teacherService } from '@/services/api/teacherService';
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { BookOpen, Mail, Phone, Plus, Search, Users } from "lucide-react";
+import teacherService from "@/services/api/teacherService";
+import SkeletonLoader from "@/components/molecules/SkeletonLoader";
+import EmptyState from "@/components/molecules/EmptyState";
+import DataTable from "@/components/molecules/DataTable";
+import SearchBar from "@/components/molecules/SearchBar";
+import StatCard from "@/components/molecules/StatCard";
+import PageHeader from "@/components/organisms/PageHeader";
+import Badge from "@/components/atoms/Badge";
+import Button from "@/components/atoms/Button";
 
 function Teachers() {
   const navigate = useNavigate();
@@ -21,46 +21,50 @@ function Teachers() {
     loadTeachers();
   }, []);
 
-  const loadTeachers = async () => {
+const loadTeachers = async () => {
     try {
-      setLoading(true);
-      const data = await teacherService.getTeachers();
-      setTeachers(data);
+      const data = await teacherService.getAll();
+      setTeachers(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error('Error loading teachers:', error);
+      setTeachers([]);
     } finally {
       setLoading(false);
     }
   };
 
-  const filteredTeachers = teachers.filter(teacher =>
-    teacher.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    teacher.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    teacher.subject.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredTeachers = teachers.filter(teacher => {
+    if (!teacher) return false;
+    const name = teacher.name || '';
+    const email = teacher.email || '';
+    const subject = teacher.subject || '';
+    return name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+           email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+           subject.toLowerCase().includes(searchTerm.toLowerCase());
+  });
 
-  const teacherStats = {
+const teacherStats = {
     totalTeachers: teachers.length,
-    activeTeachers: teachers.filter(t => t.status === 'active').length,
-    totalSubjects: [...new Set(teachers.map(t => t.subject))].length,
+    activeTeachers: teachers.filter(t => t?.status === 'active').length,
+    totalSubjects: [...new Set(teachers.map(t => t?.subject).filter(Boolean))].length,
     avgExperience: teachers.length > 0 ? 
-      Math.round(teachers.reduce((sum, t) => sum + t.experience, 0) / teachers.length) : 0
+      Math.round(teachers.reduce((sum, t) => sum + (t?.experience || 0), 0) / teachers.length) : 0
   };
 
   const columns = [
     {
       key: 'name',
       label: 'Teacher',
-      render: (teacher) => (
+render: (teacher) => (
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center">
             <span className="text-indigo-600 font-medium text-sm">
-              {teacher.name.split(' ').map(n => n[0]).join('')}
+              {teacher?.name ? teacher.name.split(' ').map(n => n[0] || '').join('') : '?'}
             </span>
           </div>
           <div>
-            <div className="font-medium text-gray-900">{teacher.name}</div>
-            <div className="text-sm text-gray-500">{teacher.qualification}</div>
+            <div className="font-medium text-gray-900">{teacher?.name || 'Unknown'}</div>
+            <div className="text-sm text-gray-500">{teacher?.qualification || 'N/A'}</div>
           </div>
         </div>
       )
@@ -68,15 +72,15 @@ function Teachers() {
     {
       key: 'contact',
       label: 'Contact',
-      render: (teacher) => (
+render: (teacher) => (
         <div>
           <div className="flex items-center gap-1 text-sm text-gray-600">
             <Mail className="w-3 h-3" />
-            {teacher.email}
+            {teacher?.email || 'No email'}
           </div>
           <div className="flex items-center gap-1 text-sm text-gray-600 mt-1">
             <Phone className="w-3 h-3" />
-            {teacher.phone}
+            {teacher?.phone || 'No phone'}
           </div>
         </div>
       )
@@ -84,30 +88,30 @@ function Teachers() {
     {
       key: 'subject',
       label: 'Subject',
-      render: (teacher) => (
-        <Badge color="blue">{teacher.subject}</Badge>
+render: (teacher) => (
+        <Badge color="blue">{teacher?.subject || 'No subject'}</Badge>
       )
     },
     {
       key: 'experience',
       label: 'Experience',
       render: (teacher) => (
-        <span className="text-gray-900">{teacher.experience} years</span>
+        <span className="text-gray-900">{teacher?.experience || 0} years</span>
       )
     },
     {
       key: 'batches',
       label: 'Batches',
       render: (teacher) => (
-        <span className="text-gray-600">{teacher.batchCount || 0} batches</span>
+        <span className="text-gray-600">{teacher?.batchCount || 0} batches</span>
       )
     },
     {
       key: 'status',
       label: 'Status',
       render: (teacher) => (
-        <Badge color={teacher.status === 'active' ? 'green' : 'gray'}>
-          {teacher.status === 'active' ? 'Active' : 'Inactive'}
+        <Badge color={teacher?.status === 'active' ? 'green' : 'gray'}>
+          {teacher?.status === 'active' ? 'Active' : 'Inactive'}
         </Badge>
       )
     }
